@@ -61,7 +61,7 @@ routes.put('/login', async (req, res) => {
         res.cookie('jwtoken', token, {
             httpOnly: true,
             secure: true,
-            sameSite: 'none',
+            sameSite: 'None',
         });
         res.send({ msg: "Users logged successfully", user: {
             username: user.username,
