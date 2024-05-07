@@ -12,7 +12,7 @@ db.connection.once('open', () => {
 })
 .on('error', (err) => {
     console.log("Error: ", err);
-})
+});
 
 app.use(cors());
 app.use(cookieParser());

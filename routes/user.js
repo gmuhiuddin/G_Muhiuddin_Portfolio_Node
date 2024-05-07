@@ -30,7 +30,7 @@ routes.post('/signup', async (req, res) => {
         } });
     } catch (err) {
         res.send({ msg: err.message });
-    }
+    };
 });
 
 routes.put('/login', async (req, res) => {
@@ -63,7 +63,7 @@ routes.put('/login', async (req, res) => {
         } });
     } catch (err) {
         res.send({ msg: err.message });
-    }
+    };
 });
 
 routes.put('/logout', verifyJwToken, async (req, res) => {
