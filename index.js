@@ -17,7 +17,10 @@ db.connection.once('open', () => {
     console.log("Error: ", err);
 });
 
-app.use(cors());
+app.use(cors({
+    origin: ["https://g-muhiuddin-protfolio.vercel.app", "https://gmuhiuddin-protfolio-ghulammuhiuddins-projects.vercel.app", "http://localhost:5173"],
+    credentials: true
+}));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -27,4 +30,4 @@ app.listen(port, () => {
     console.log("Server started successfully");
 });
 
-app.use('/:authstoken',verifyApiAuth, routes);
+app.use('/:authstoken', verifyApiAuth, routes);

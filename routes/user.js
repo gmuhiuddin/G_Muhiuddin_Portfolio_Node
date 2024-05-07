@@ -22,7 +22,11 @@ routes.post('/signup', async (req, res) => {
 
         await user.save();
 
-        res.cookie('jwtoken', token);
+        res.cookie('jwtoken', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+        });
         res.send({ msg: "Users added successfully", user: {
             username: user.username,
             email: user.email,
@@ -55,7 +59,11 @@ routes.put('/login', async (req, res) => {
         await user.save();
 
 
-        res.cookie('jwtoken', token);
+        res.cookie('jwtoken', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+        });
         res.send({ msg: "Users logged successfully", user: {
             username: user.username,
             email: user.email,
