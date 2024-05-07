@@ -22,4 +22,6 @@ app.listen(3001, () => {
     console.log("Server started successfully");
 });
 
-app.use('/:authstoken',verifyApiAuth, routes);
+// app.use('/:authstoken',verifyApiAuth, routes);
+
+app.use('/', routes);
