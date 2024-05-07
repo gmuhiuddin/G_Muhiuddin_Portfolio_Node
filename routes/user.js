@@ -27,6 +27,7 @@ routes.post('/signup', async (req, res) => {
             secure: true,
             sameSite: 'None',
         });
+        
         res.send({ msg: "Users added successfully", user: {
             username: user.username,
             email: user.email,
@@ -63,6 +64,7 @@ routes.put('/login', async (req, res) => {
             secure: true,
             sameSite: 'None',
         });
+
         res.send({ msg: "Users logged successfully", user: {
             username: user.username,
             email: user.email,
