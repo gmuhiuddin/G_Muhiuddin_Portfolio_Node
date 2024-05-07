@@ -85,7 +85,11 @@ routes.put('/logout', verifyJwToken, async (req, res) => {
 
         await user.save();
 
-        res.clearCookie('jwtoken');
+        res.clearCookie('jwtoken', {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+        });
         res.send({ msg: "Users logged out successfully" });
     } catch (err) {
         res.send({ msg: err.message });
