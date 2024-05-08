@@ -2,15 +2,15 @@ import express from 'express';
 import Users from '../models/Users.js';
 import { verifyJwToken } from '../middleWares/verifyToken.js';
 
-const routes = express.Router();
+const router = express.Router();
 
-routes.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
     const user = await Users.find();
 
     res.send({ msg: "Users get successfully", user });
 });
 
-routes.post('/signup', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
         const user = new Users({
             ...req.body
@@ -38,7 +38,7 @@ routes.post('/signup', async (req, res) => {
     };
 });
 
-routes.put('/login', async (req, res) => {
+router.put('/login', async (req, res) => {
     try {
 
         const { body: { email, password } } = req;
@@ -75,7 +75,7 @@ routes.put('/login', async (req, res) => {
     };
 });
 
-routes.put('/logout', verifyJwToken, async (req, res) => {
+router.put('/logout', verifyJwToken, async (req, res) => {
     try {
 
         const { tokenToRemove, user } = req;
@@ -96,7 +96,7 @@ routes.put('/logout', verifyJwToken, async (req, res) => {
     }
 });
 
-routes.get('/check', verifyJwToken, async (req, res) => {
+router.get('/check', verifyJwToken, async (req, res) => {
     try {
         const { user } = req;
 
@@ -110,4 +110,4 @@ routes.get('/check', verifyJwToken, async (req, res) => {
     }
 });
 
-export default routes;
+export default router;
