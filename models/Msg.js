@@ -19,6 +19,10 @@ const msgSchema = new Schema({
         type: String,
         require: true,
         minLength: "8"
+    },
+    repleyed: {
+        type: Boolean,
+        default: false
     }
 });
 
