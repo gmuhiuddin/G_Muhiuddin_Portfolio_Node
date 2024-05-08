@@ -26,7 +26,6 @@ const msgSchema = new Schema({
     }
 });
 
-
 msgSchema.methods.sendMailToUser = async function () {
     const { email } = this;
 

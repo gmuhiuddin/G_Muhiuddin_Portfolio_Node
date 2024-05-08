@@ -9,6 +9,17 @@ router.get('/msg', async (req, res) => {
     res.send({ msg: "Product fetchedd successfully", messages: msg });
 });
 
+router.get('/msg/:msgId', async (req, res) => {
+
+    const { msgId } = req.params;
+
+    const msg = await Msg.findOne({
+     _id: msgId   
+    });
+
+    res.send({ msg: "Product fetchedd successfully", message: msg });
+});
+
 router.post('/sendmsg', async (req, res) => {
     try {
         const msg = await Msg.create(req.body);
