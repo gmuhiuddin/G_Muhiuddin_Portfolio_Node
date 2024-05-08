@@ -35,4 +35,29 @@ router.post('/sendmsg', async (req, res) => {
     }
 });
 
+router.post('/sendrepley', async (req, res) => {
+    try {
+
+        const { body: { msgId, email, msg : repleyMsg} } = req;
+
+        const msg = await Msg.findOne({
+            _id: msgId
+        });
+
+        const emailSentSucc = msg.sendRepleyMail(repleyMsg);
+
+        if (!emailSentSucc) return res.status(400).send({ msg: "Some thing went wrong" });
+
+        msg.repleyed = true;
+        msg.repleyMsg = msg;
+
+        await msg.save();
+
+        res.status(200).send({ msg: "Repley send successfully" });
+
+    } catch (err) {
+        res.status(400).send({ msg: err.message });
+    }
+});
+
 export default router;
