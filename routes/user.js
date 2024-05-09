@@ -71,7 +71,7 @@ router.put('/login', async (req, res) => {
             sameSite: 'None',
         });
 
-        res.send({ msg: "Users logged successfully", user: {
+        res.send({ msg: "Users logged successfully", ipAddress, user: {
             username: user.username,
             email: user.email,
             uid: user._id

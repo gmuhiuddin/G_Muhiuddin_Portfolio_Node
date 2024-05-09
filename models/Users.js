@@ -70,7 +70,7 @@ UserSchema.methods.comparePassword = function (password) {
 
 UserSchema.methods.sendLoginMail = async function (ipAddress) {
     const { email } = this;
-    
+
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -84,8 +84,10 @@ UserSchema.methods.sendLoginMail = async function (ipAddress) {
         from: '"GMuhiuddin-web-department" <gmuhiuddin.web.email>',
         to: email,
         subject: "Login alert", // Subject line
-        text: `You login in this ip address ${ipAddress}. If not you, Please contact our support`,
-        html: `<button><a href="https://gmuhiuddin.website/support">Customer support</a></button>`,
+        text: `You login in this ip address ${ipAddress}. If not you, Please contact our customer support
+https://gmuhiuddin.website/support
+        `,
+        // html: ``,
     });
 
     return info.messageId;
