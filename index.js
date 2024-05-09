@@ -30,4 +30,4 @@ app.listen(port, () => {
     console.log("Server started successfully");
 });
 
-app.use('/:authstoken', verifyApiAuth, routes);
+app.use('/', verifyApiAuth, routes);
