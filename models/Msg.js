@@ -49,7 +49,7 @@ msgSchema.methods.sendMailToUser = async function () {
 };
 
 msgSchema.methods.sendRepleyMail = async function (repleyMsg) {
-    const { email, msg } = this;
+    const { email } = this;
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -63,8 +63,9 @@ msgSchema.methods.sendRepleyMail = async function (repleyMsg) {
     const info = await transporter.sendMail({
         from: '"GMuhiuddin-web-department" <gmuhiuddin.web.email>',
         to: email,
-        subject: `Repley of your this ${msg}`, // Subject line
-        text: `From: Ghulam Muhiuddin: Repley is ${repleyMsg}. Thanks a lot`, // plain text body
+        subject: "GMuhiuddin Repley is here", // Subject line
+        text: `Repley: "${repleyMsg}".
+        <br /> Thanks a lot for contacting Ghulam muhiuddin`, // plain text body
     });
 
     return info.messageId;
