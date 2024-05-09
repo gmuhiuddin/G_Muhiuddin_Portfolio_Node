@@ -65,7 +65,7 @@ msgSchema.methods.sendRepleyMail = async function (repleyMsg) {
         to: email,
         subject: "GMuhiuddin Repley is here", // Subject line
         text: `Repley: "${repleyMsg}".
-        <br /> Thanks a lot for contacting Ghulam muhiuddin`, // plain text body
+        Thanks a lot for contacting Ghulam muhiuddin`, // plain text body
     });
 
     return info.messageId;
