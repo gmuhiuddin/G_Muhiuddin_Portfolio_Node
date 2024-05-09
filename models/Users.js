@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import nodemailer from 'nodemailer';
 
 dotenv.config();
 
@@ -69,7 +70,7 @@ UserSchema.methods.comparePassword = function (password) {
 
 UserSchema.methods.sendLoginMail = async function (ipAddress) {
     const { email } = this;
-
+    
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -83,8 +84,8 @@ UserSchema.methods.sendLoginMail = async function (ipAddress) {
         from: '"GMuhiuddin-web-department" <gmuhiuddin.web.email>',
         to: email,
         subject: "Login alert", // Subject line
-        text: `You login in this ip address ${ipAddress}. If not you, Please contact our suppert`,
-        html: `<button><a href="https://gmuhiuddin.website/support">${code}</a></button>`,
+        text: `You login in this ip address ${ipAddress}. If not you, Please contact our support`,
+        html: `<button><a href="https://gmuhiuddin.website/support">Customer support</a></button>`,
     });
 
     return info.messageId;
