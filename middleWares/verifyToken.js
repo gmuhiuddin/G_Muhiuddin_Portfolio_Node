@@ -32,13 +32,13 @@ const verifyJwToken = async (req, res, next) => {
 const verifyApiAuth = (req, res, next) => {
     const token = req.headers?.authentication.slice(7);
 
-    if (!token) return res.send({ msg: "Invalid api auth" });
+    if (!token) return res.status(400).send({ msg: "Invalid api auth" });
 
     const apiAuths = process.env.api_auths.split(' ');
     
     const isAuthentic = apiAuths.includes(token);
     
-    if (!isAuthentic) return res.send({ msg: "Invalid api auth" });
+    if (!isAuthentic) return res.status(400).send({ msg: "Invalid api auth" });
 
     next();
 };
