@@ -35,25 +35,25 @@ router.post('/sendmsg', async (req, res) => {
     }
 });
 
-router.post('/sendrepley', async (req, res) => {
+router.post('/sendreply', async (req, res) => {
     try {
 
-        const { body: { msgId, email, msg : repleyMsg} } = req;
+        const { body: { msgId, email, msg : replyMsg} } = req;
 
         const msg = await Msg.findOne({
             _id: msgId
         });
 
-        const emailSentSucc = msg.sendRepleyMail(repleyMsg);
+        const emailSentSucc = msg.sendReplyMail(replyMsg);
 
         if (!emailSentSucc) return res.status(400).send({ msg: "Some thing went wrong" });
 
-        msg.repleyed = true;
-        msg.repleyMsg = msg;
+        msg.replyed = true;
+        msg.replyMsg = msg;
 
         await msg.save();
 
-        res.status(200).send({ msg: "Repley send successfully" });
+        res.status(200).send({ msg: "Reply send successfully" });
 
     } catch (err) {
         res.status(400).send({ msg: err.message });

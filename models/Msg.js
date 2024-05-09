@@ -20,9 +20,13 @@ const msgSchema = new Schema({
         require: true,
         minLength: "8"
     },
-    repleyed: {
+    replyed: {
         type: Boolean,
         default: false
+    },
+    replyMsg: {
+        type: String,
+        default: "",
     }
 });
 
@@ -42,13 +46,13 @@ msgSchema.methods.sendMailToUser = async function () {
         from: '"GMuhiuddin-web-department" <gmuhiuddin.web.email>',
         to: email,
         subject: "Thanks, for Contacting to Ghulam muhiuddin", // Subject line
-        text: "Your message was send successfully. Ghulam muhiuddin repley you within 1 to 2 days. Thanks a lot", // plain text body
+        text: "Your message was send successfully. Ghulam muhiuddin reply you within 1 to 2 days. Thanks a lot", // plain text body
     });
 
     return info.messageId;
 };
 
-msgSchema.methods.sendRepleyMail = async function (repleyMsg) {
+msgSchema.methods.sendReplyMail = async function (replyMsg) {
     const { email } = this;
 
     const transporter = nodemailer.createTransport({
@@ -63,9 +67,9 @@ msgSchema.methods.sendRepleyMail = async function (repleyMsg) {
     const info = await transporter.sendMail({
         from: '"GMuhiuddin-web-department" <gmuhiuddin.web.email>',
         to: email,
-        subject: "GMuhiuddin Repley is here", // Subject line
-        text: `Repley: "${repleyMsg}".
-        Thanks a lot for contacting Ghulam muhiuddin`, // plain text body
+        subject: "GMuhiuddin`s Reply is here", // Subject line
+        text: `Reply: "${replyMsg}".
+        Thanks for contacting Ghulam muhiuddin`, // plain text body
     });
 
     return info.messageId;
