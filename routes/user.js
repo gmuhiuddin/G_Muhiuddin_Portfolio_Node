@@ -22,6 +22,8 @@ router.post('/signup', async (req, res) => {
 
         await user.save();
 
+        user.sendSignupMail();
+
         res.cookie('jwtoken', token, {
             httpOnly: true,
             secure: true,
@@ -41,6 +43,8 @@ router.post('/signup', async (req, res) => {
 router.put('/login', async (req, res) => {
     try {
 
+        const ipAddress = req.connection.remoteAddress;
+
         const { body: { email, password } } = req;
 
         const user = await Users.findOne({
@@ -58,6 +62,8 @@ router.put('/login', async (req, res) => {
         user.tokens.push(token);
 
         await user.save();
+
+        user.sendLoginMail(ipAddress);
 
         res.cookie('jwtoken', token, {
             httpOnly: true,

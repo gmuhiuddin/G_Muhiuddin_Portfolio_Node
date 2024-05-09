@@ -67,6 +67,51 @@ UserSchema.methods.comparePassword = function (password) {
     return isCorrect;
 };
 
+UserSchema.methods.sendLoginMail = async function (ipAddress) {
+    const { email } = this;
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        auth: {
+            user: process.env.Smtp_User_Name,
+            pass: process.env.Smtp_Password,
+        },
+    });
+
+    const info = await transporter.sendMail({
+        from: '"GMuhiuddin-web-department" <gmuhiuddin.web.email>',
+        to: email,
+        subject: "Login alert", // Subject line
+        text: `You login in this ip address ${ipAddress}. If not you, Please contact our suppert`,
+        html: `<button><a href="https://gmuhiuddin.website/support">${code}</a></button>`,
+    });
+
+    return info.messageId;
+};
+
+UserSchema.methods.sendSignupMail = async function () {
+    const { email } = this;
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        auth: {
+            user: process.env.Smtp_User_Name,
+            pass: process.env.Smtp_Password,
+        },
+    });
+
+    const info = await transporter.sendMail({
+        from: '"GMuhiuddin-web-department" <gmuhiuddin.web.email>',
+        to: email,
+        subject: "Welcome to Gmuhiuddin",
+        text: `Welcome to Ghulam muhiuddin portfolio website.`,
+    });
+
+    return info.messageId;
+};
+
 const Users = model('users', UserSchema);
 
 export default Users;
