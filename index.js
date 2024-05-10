@@ -18,7 +18,7 @@ db.connection.once('open', () => {
 });
 
 app.use(cors({
-    origin: ["https://g-muhiuddin-protfolio.vercel.app", "https://gmuhiuddin-protfolio-ghulammuhiuddins-projects.vercel.app", "http://localhost:5173"],
+    origin: ["https://g-muhiuddin-protfolio.vercel.app", "https://gmuhiuddin-protfolio-ghulammuhiuddins-projects.vercel.app", "https://www.gmuhiuddin.website", "http://localhost:5173"],
     credentials: true
 }));
 app.use(cookieParser());
