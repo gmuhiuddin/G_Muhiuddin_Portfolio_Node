@@ -11,7 +11,7 @@ const { Schema, model } = mongoose;
 const UserSchema = new Schema({
     username: {
         type: String,
-        require: true
+        required: true
     },
     userImg: {
         type: String,
@@ -19,12 +19,12 @@ const UserSchema = new Schema({
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         minLength: 8
     },
     tokens: {

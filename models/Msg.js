@@ -9,15 +9,15 @@ const { Schema, model } = mongoose;
 const msgSchema = new Schema({
     userName: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true
+        required: true
     },
     msg: {
         type: String,
-        require: true,
+        required: true,
         minLength: "8"
     },
     replyed: {
