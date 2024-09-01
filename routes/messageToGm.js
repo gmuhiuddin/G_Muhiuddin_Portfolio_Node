@@ -25,9 +25,9 @@ router.post('/sendmsg', verifyWeb, async (req, res) => {
     try {
         const msg = await Msg.create(req.body);
 
-        const emailSentSucc = msg.sendMailToUser();
+        const emailSentSucc = await msg.sendMailToUser();
 
-        if (!emailSentSucc) return res.status(400).send({ msg: "Some thing went wrong" });
+        if (!emailSentSucc) return res.status(400).send({ msg: "Error in sending mail!" });
 
         res.status(200).send({ msg: "Msg was send successfully" });
 
@@ -45,7 +45,7 @@ router.post('/sendreply', async (req, res) => {
             _id: msgId
         });
 
-        const emailSentSucc = msg.sendReplyMail(replyMsg);
+        const emailSentSucc = await msg.sendReplyMail(replyMsg);
 
         if (!emailSentSucc) return res.status(400).send({ msg: "Some thing went wrong" });
 

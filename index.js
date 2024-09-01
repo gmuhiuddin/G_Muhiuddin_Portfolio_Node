@@ -4,7 +4,6 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import db from './config/db.js';
 import routes from './routes/index.js';
-import { verifyApiAuth } from './middleWares/verifyToken.js';
 
 const app = express();
 
@@ -30,4 +29,4 @@ app.listen(port, () => {
     console.log("Server started successfully");
 });
 
-app.use('/', verifyApiAuth, routes);
+app.use('/', routes);

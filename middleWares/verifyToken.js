@@ -29,20 +29,6 @@ const verifyJwToken = async (req, res, next) => {
 
 };
 
-const verifyApiAuth = (req, res, next) => {
-    const token = req.headers?.authentication.slice(7);
-
-    if (!token) return res.status(400).send({ msg: "Invalid api auth" });
-
-    const apiAuths = process.env.api_auths.split(' ');
-    
-    const isAuthentic = apiAuths.includes(token);
-    
-    if (!isAuthentic) return res.status(400).send({ msg: "Invalid api auth" });
-
-    next();
-};
-
 const verifyWeb = async (req, res, next) => {
     const verifiedWebs = process.env.VERIFIED_WEBS.split(",");
   
@@ -53,4 +39,4 @@ const verifyWeb = async (req, res, next) => {
     next();
   };
 
-export { verifyApiAuth, verifyJwToken, verifyWeb };
+export { verifyJwToken, verifyWeb };
