@@ -43,4 +43,14 @@ const verifyApiAuth = (req, res, next) => {
     next();
 };
 
-export { verifyApiAuth, verifyJwToken };
+const verifyWeb = async (req, res, next) => {
+    const verifiedWebs = process.env.VERIFIED_WEBS.split(",");
+  
+    const origin = req.get('origin');
+  
+    if(!verifiedWebs.includes(origin)) return res.send({err: "Something went wrong!", errMsg: "Web not found!"});
+  
+    next();
+  };
+
+export { verifyApiAuth, verifyJwToken, verifyWeb };

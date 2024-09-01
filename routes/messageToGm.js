@@ -1,5 +1,6 @@
 import express from 'express';
 import Msg from '../models/Msg.js'
+import { verifyWeb } from '../middleWares/verifyToken.js';
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.get('/msg/:msgId', async (req, res) => {
     res.send({ msg: "Product fetchedd successfully", message: msg });
 });
 
-router.post('/sendmsg', async (req, res) => {
+router.post('/sendmsg', verifyWeb, async (req, res) => {
     try {
         const msg = await Msg.create(req.body);
 
